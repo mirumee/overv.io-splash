@@ -28,17 +28,18 @@ module.exports = (grunt) ->
                     baseDir: './static/'
 
         copy:
-            expand: true
-            cwd: 'public/'
-            src: [
-                'index.html'
-                'maintenance.html'
-                'robots.txt'
-                'favicon.png'
-                'splash/img/**'
-                "#{BOWER_DIR}bootstrap/fonts"
-            ]
-            dest: STATIC_DIR
+            production:
+                expand: true
+                cwd: 'public/'
+                src: [
+                    'index.html'
+                    'maintenance.html'
+                    'robots.txt'
+                    'favicon.png'
+                    'splash/img/**'
+                    "#{BOWER_DIR}bootstrap/fonts"
+                ]
+                dest: STATIC_DIR
 
         imagemin:
             production:
@@ -89,8 +90,8 @@ module.exports = (grunt) ->
                     interrupt: true
 
     # Production tasks
-    grunt.registerTask 'production', ['less:production', 'copy', 'imagemin', 'uglify:splash_head', 'uglify:splash_main']
+    grunt.registerTask 'production', ['less:production', 'copy:production', 'imagemin', 'uglify:splash_head', 'uglify:splash_main']
 
     # Default task
-    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'copy']
+    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'copy:production']
     grunt.registerTask 'default', ['development', 'browserSync', 'watch' ]
