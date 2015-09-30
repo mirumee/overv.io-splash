@@ -7,7 +7,6 @@ module.exports = (grunt) ->
 
     LESS_MAP = {}
     LESS_MAP["#{STATIC_DIR}splash/css/style.css"] = "#{PUBLIC_DIR}/splash/less/style.less"
-    LESS_MAP["#{STATIC_DIR}css/style.css"] = "#{PUBLIC_DIR}/less/style.less"
 
     # Load the plugins
     (require 'load-grunt-tasks')(grunt)
@@ -28,35 +27,18 @@ module.exports = (grunt) ->
                 server:
                     baseDir: './static/'
 
-        compress:
-            main:
-                options:
-                    mode: 'gzip'
-                expand: true
-                src: ["#{STATIC_DIR}**/*.css", "#{STATIC_DIR}**/*.html", "#{STATIC_DIR}**/*.js"]
-
         copy:
-            build:
-                expand: true
-                cwd: 'public/'
-                src: ['js/**']
-                dest: BUILD_DIR
-            production:
-                expand: true
-                cwd: 'public/'
-                src: [
-                    'css/**'
-                    'fonts/**'
-                    'img/**'
-                    'index.html'
-                    'maintenance.html'
-                    'robots.txt'
-                    'js/libs/almond.js'
-                    'favicon.png'
-                    'splash/img/**'
-                    "#{BOWER_DIR}bootstrap/fonts"
-                ]
-                dest: STATIC_DIR
+            expand: true
+            cwd: 'public/'
+            src: [
+                'index.html'
+                'maintenance.html'
+                'robots.txt'
+                'favicon.png'
+                'splash/img/**'
+                "#{BOWER_DIR}bootstrap/fonts"
+            ]
+            dest: STATIC_DIR
 
         imagemin:
             production:
@@ -101,14 +83,13 @@ module.exports = (grunt) ->
                 files: ['public/*.html', 'public/splash/js/*.js']
                 tasks: ['uglify:splash_head', 'uglify:splash_main', 'copy']
             scripts:
-                files: ['public/**/*.less']
+                files: ['public/splash/**/*.less']
                 tasks: ['less:development']
                 options:
                     interrupt: true
 
     # Production tasks
-    grunt.registerTask 'production-build', ['copy:build']
-    grunt.registerTask 'production', ['less:production', 'copy:production', 'imagemin', 'uglify:splash_head', 'uglify:splash_main', 'production-build', 'compress']
+    grunt.registerTask 'production', ['less:production', 'copy', 'imagemin', 'uglify:splash_head', 'uglify:splash_main']
 
     # Default task
     grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'copy']

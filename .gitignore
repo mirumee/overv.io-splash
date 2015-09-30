@@ -1,6 +1,3 @@
 node_modules
-/public/js/dev
-/public/js/main.js
-/public/main.js
 /public/splash/bower_components/
 /static/
