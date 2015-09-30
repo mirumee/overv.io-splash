@@ -23,8 +23,11 @@ module.exports = (grunt) ->
                 open: true
                 reloadOnRestart: true
                 watchTask: true
+                injectChanges: false
+                codeSync: true
                 server:
                     baseDir: './static/'
+                    directory: true
 
         copy:
             production:
@@ -33,6 +36,7 @@ module.exports = (grunt) ->
                 src: [
                     'index.html'
                     'maintenance.html'
+                    'enterprise.html'
                     'robots.txt'
                     'favicon.png'
                     'splash/img/**'
