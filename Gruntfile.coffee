@@ -78,6 +78,7 @@ module.exports = (grunt) ->
                     "#{BOWER_DIR}jquery/dist/jquery.js"
                     "#{BOWER_DIR}ScrollMagic/scrollmagic/uncompressed/ScrollMagic.js"
                     "#{BOWER_DIR}typed.js/js/typed.js"
+                    "#{BOWER_DIR}parallax/deploy/jquery.parallax.js"
                     "#{PUBLIC_DIR}splash/js/fx.js"
                 ]
                 dest: "#{STATIC_DIR}splash/js/main.js"
