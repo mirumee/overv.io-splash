@@ -1,7 +1,6 @@
 module.exports = (grunt) ->
 
     STATIC_DIR = 'static/'
-    BUILD_DIR = 'build/'
     PUBLIC_DIR = 'public/'
     BOWER_DIR = "#{PUBLIC_DIR}splash/bower_components/"
 
