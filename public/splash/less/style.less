@@ -45,6 +45,7 @@ body {
   .navbar-nav {
     > li {
       > a {
+        font-size: @font-size-base;
         color: @brand-primary;
         -webkit-transition: background 0.2s, color 0.2s;
         transition: background 0.2s, color 0.2s;
@@ -831,7 +832,11 @@ html.android {
       > li {
         float: left;
         > a {
-          border: 1px solid #fff;
+          &.btn {
+            border: 1px solid #fff;
+          }
+          font-size: @font-size-base;
+          border: none;
           color: #fff;
           padding: 4px 8px;
 
@@ -842,12 +847,15 @@ html.android {
         }
       }
     }
+    .features .icon {
+      text-align: center;
+    }
 }
 
 // enterprise styles
 #desktop-header {
-    max-width: 1920px;
     background: url('../img/desktop-header.jpg') top center no-repeat;
+    background-size: cover;
     overflow: hidden;
     position: relative;
 
