@@ -2,7 +2,7 @@ module.exports = (grunt) ->
 
     STATIC_DIR = 'static/'
     PUBLIC_DIR = 'public/'
-    BOWER_DIR = "#{PUBLIC_DIR}splash/bower_components/"
+    BOWER_DIR = "bower_components/"
 
     LESS_MAP = {}
     LESS_MAP["#{STATIC_DIR}splash/css/style.css"] = "#{PUBLIC_DIR}/splash/less/style.less"
