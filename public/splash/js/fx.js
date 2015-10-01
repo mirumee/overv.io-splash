@@ -7,6 +7,21 @@ $(function () {
         return (orig.slice(0, index) + str + orig.slice(index + Math.abs(toRemove)));
     };
 
+    $(function() {
+        $('.navbar a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+
     (function() {
         var placeholder = $('.hero h1 span');
         var typedCursor;
@@ -48,16 +63,35 @@ $(function () {
 
     var controller = new ScrollMagic.Controller();
 
-    (function() {
-        var scene = new ScrollMagic.Scene({
-            offset: 26
-        });
-        scene.setPin('.main .navbar', {
-            pushNeighbours: false
-        });
-        scene.addTo(controller);
-    })();
+    if ($('body').hasClass('main')) {
+        (function() {
+            var scene = new ScrollMagic.Scene({
+                offset: 26
+            });
+            scene.setPin('.navbar', {
+                pushNeighbours: false
+            });
+            scene.addTo(controller);
+        })();
+    }
 
+    if ($('body').hasClass('enterprise')) {
+        var scene = document.getElementById('scene');
+        var parallax = new Parallax(scene, {
+            scalarX: 0.75,
+            scalarY: 0.25
+        });
+
+        (function() {
+            var sceneEnterprise = new ScrollMagic.Scene({
+                triggerElement: "#enterprise-info",
+                offset: 25,
+                triggerHook: 0
+            }).setPin(".enterprise .navbar", {pushFollowers: false})
+            .setClassToggle(".navbar", "navbar-scrolling")
+            .addTo(controller);
+        })();
+    }
 
     var hero = $('.hero');
     var navBar = $('.navbar-default');
