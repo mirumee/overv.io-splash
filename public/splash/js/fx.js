@@ -52,7 +52,7 @@ $(function () {
         var scene = new ScrollMagic.Scene({
             offset: 26
         });
-        scene.setPin('.navbar', {
+        scene.setPin('.main .navbar', {
             pushNeighbours: false
         });
         scene.addTo(controller);
