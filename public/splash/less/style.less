@@ -808,6 +808,23 @@ html.android {
             font-family: 'Abel', sans-serif;
             margin-bottom: .5em;
         }
+
+        img {
+            max-width: 250px;
+        }
+
+        @media (max-width: @screen-xs-max) {
+            top: 30%;
+            h1 {
+                font-size: 2em;
+            }
+            img {
+                max-width: 40%;
+            }
+        }
+    }
+    .navbar-brand {
+        background: url("../img/logo-enterprise.svg") 50% 50% no-repeat;
     }
     .navbar {
         margin: 0;
@@ -827,7 +844,6 @@ html.android {
         }
     }
     .navbar-nav {
-      float: left;
       margin: 0;
       > li {
         float: left;
