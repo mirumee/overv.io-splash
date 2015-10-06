@@ -100,6 +100,12 @@ body {
   > li {
     float: left;
     margin-left: 1em;
+    @media (max-width: @screen-xs) {
+      margin-left: 0.5em;
+      &:first-child {
+          display: none;
+      }
+    }
     > a {
       border: 1px solid @brand-primary;
       color: @brand-primary;
