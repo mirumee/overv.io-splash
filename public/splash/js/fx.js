@@ -87,7 +87,7 @@ $(function () {
                 triggerElement: "#enterprise-info",
                 offset: 25,
                 triggerHook: 0
-            }).setPin(".enterprise .navbar", {pushFollowers: false})
+            })
             .setClassToggle(".navbar", "navbar-scrolling")
             .addTo(controller);
         })();
