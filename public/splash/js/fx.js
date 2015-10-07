@@ -96,6 +96,9 @@ $(function () {
     var hero = $('.hero');
     var navBar = $('.navbar-default');
     var target = $('.tickets .target');
+    if (target.length === 0) {
+        return;
+    }
     var targetLimit = target.offset().top + target.outerHeight() - window.innerHeight;
     var heroLimit = hero.offset().top + hero.outerHeight() - navBar.outerHeight();
     var ticketProgress = 0;
