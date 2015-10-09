@@ -78,6 +78,8 @@ $(function () {
     if ($('body').hasClass('enterprise')) {
         var scene = document.getElementById('scene');
         var parallax = new Parallax(scene, {
+            invertX: true,
+            invertY: true,
             scalarX: 0.75,
             scalarY: 0.25
         });
