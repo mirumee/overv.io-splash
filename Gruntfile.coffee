@@ -6,6 +6,7 @@ module.exports = (grunt) ->
 
     LESS_MAP = {}
     LESS_MAP["#{STATIC_DIR}splash/css/style.css"] = "#{PUBLIC_DIR}/splash/less/style.less"
+    LESS_MAP["#{STATIC_DIR}splash/css/setup.css"] = "#{PUBLIC_DIR}/splash/less/setup.less"
 
     # Load the plugins
     (require 'load-grunt-tasks')(grunt)
@@ -36,7 +37,7 @@ module.exports = (grunt) ->
                 src: [
                     'index.html'
                     'maintenance.html'
-                    'enterprise.html'
+                    'enterprise/*.html'
                     'robots.txt'
                     'favicon.png'
                     'splash/img/**'
@@ -82,10 +83,17 @@ module.exports = (grunt) ->
                     "#{PUBLIC_DIR}splash/js/fx.js"
                 ]
                 dest: "#{STATIC_DIR}splash/js/main.js"
+            splash_setup:
+                mangle: true
+                src: [
+                    "#{BOWER_DIR}jquery/dist/jquery.js"
+                    "#{PUBLIC_DIR}splash/js/setup.js"
+                ]
+                dest: "#{STATIC_DIR}splash/js/setup.js"
 
         watch:
             splash:
-                files: ['public/*.html', 'public/splash/js/*.js']
+                files: ['public/**/*.html', 'public/splash/js/*.js']
                 tasks: ['uglify:splash_head', 'uglify:splash_main', 'copy']
             scripts:
                 files: ['public/splash/**/*.less']
@@ -94,8 +102,8 @@ module.exports = (grunt) ->
                     interrupt: true
 
     # Production tasks
-    grunt.registerTask 'production', ['less:production', 'copy:production', 'imagemin', 'uglify:splash_head', 'uglify:splash_main']
+    grunt.registerTask 'production', ['less:production', 'copy:production', 'imagemin', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup']
 
     # Default task
-    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'copy:production']
+    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup', 'copy:production']
     grunt.registerTask 'default', ['development', 'browserSync', 'watch' ]
