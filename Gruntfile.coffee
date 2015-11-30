@@ -107,8 +107,8 @@ module.exports = (grunt) ->
                     interrupt: true
 
     # Production tasks
-    grunt.registerTask 'production', ['less:production', 'copy:production', 'imagemin', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup']
+    grunt.registerTask 'production', ['less:production', 'copy', 'imagemin', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup']
 
     # Default task
-    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup', 'copy:production']
+    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup', 'copy']
     grunt.registerTask 'default', ['development', 'browserSync', 'watch' ]
