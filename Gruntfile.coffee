@@ -41,9 +41,14 @@ module.exports = (grunt) ->
                     'robots.txt'
                     'favicon.png'
                     'splash/img/**'
-                    "#{BOWER_DIR}bootstrap/fonts"
                 ]
                 dest: STATIC_DIR
+
+            fonts:
+                expand: true
+                cwd: "#{BOWER_DIR}bootstrap/fonts"
+                src: '*.{eot,woff,ttf,svg}'
+                dest: "#{STATIC_DIR}/splash/fonts"
 
         imagemin:
             production:
