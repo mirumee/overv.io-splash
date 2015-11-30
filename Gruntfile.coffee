@@ -41,9 +41,14 @@ module.exports = (grunt) ->
                     'robots.txt'
                     'favicon.png'
                     'splash/img/**'
-                    "#{BOWER_DIR}bootstrap/fonts"
                 ]
                 dest: STATIC_DIR
+
+            fonts:
+                expand: true
+                cwd: "#{BOWER_DIR}bootstrap/fonts"
+                src: '*.{eot,woff,ttf,svg}'
+                dest: "#{STATIC_DIR}/splash/fonts"
 
         imagemin:
             production:
@@ -102,8 +107,8 @@ module.exports = (grunt) ->
                     interrupt: true
 
     # Production tasks
-    grunt.registerTask 'production', ['less:production', 'copy:production', 'imagemin', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup']
+    grunt.registerTask 'production', ['less:production', 'copy', 'imagemin', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup']
 
     # Default task
-    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup', 'copy:production']
+    grunt.registerTask 'development', ['less:development', 'uglify:splash_head', 'uglify:splash_main', 'uglify:splash_setup', 'copy']
     grunt.registerTask 'default', ['development', 'browserSync', 'watch' ]
