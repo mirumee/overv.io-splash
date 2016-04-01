@@ -7,6 +7,7 @@ module.exports = (grunt) ->
     LESS_MAP = {}
     LESS_MAP["#{STATIC_DIR}splash/css/style.css"] = "#{PUBLIC_DIR}/splash/less/style.less"
     LESS_MAP["#{STATIC_DIR}splash/css/setup.css"] = "#{PUBLIC_DIR}/splash/less/setup.less"
+    LESS_MAP["#{STATIC_DIR}splash/css/maintenance.css"] = "#{PUBLIC_DIR}/splash/less/maintenance.less"
 
     # Load the plugins
     (require 'load-grunt-tasks')(grunt)
