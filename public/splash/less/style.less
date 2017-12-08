@@ -32,7 +32,7 @@ body {
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
 .navbar-default {
@@ -42,6 +42,15 @@ body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   z-index: @zindex-navbar-fixed;
+  &.alert-open {
+    position: fixed;
+    width: 100%;
+    top: 70px;
+    margin-top: 0;
+    @media (max-width: @screen-md-max) {
+      top: 95px;
+    }
+  }
   .navbar-nav {
     > li {
       > a {
@@ -235,6 +244,12 @@ body {
     font-size: 2.8vmin;
     font-weight: @font-weight-headers;
     text-align: center;
+  }
+  &.alert-open {
+    margin-top: 140px;
+    @media (max-width: @screen-md-max) {
+      margin-top: 190px;
+    }
   }
 }
 
@@ -962,4 +977,50 @@ html.android {
 }
 img.android-get-it-badge {
     max-width: 200px;
+}
+
+#alert-box {
+  background-color: #00A7ED;
+  padding: 20px 0;
+  color: white;
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  z-index: 10;
+  @media (max-width: @screen-md-max) {
+    height: 95px;
+  }
+
+  &.closed {
+    display: none;
+  }
+  .message {
+    text-align: center;
+    font-size: 2rem;
+
+    a {
+      color: white;
+      text-decoration: underline;
+      font-weight: 700;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .close-box {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -1rem;
+    bottom: 0;
+    right: 1rem;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 1;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }

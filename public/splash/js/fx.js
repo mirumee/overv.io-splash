@@ -63,17 +63,22 @@ $(function () {
 
     var controller = new ScrollMagic.Controller();
 
-    if ($('body').hasClass('main')) {
-        (function() {
-            var scene = new ScrollMagic.Scene({
-                offset: 26
-            });
-            scene.setPin('.navbar', {
-                pushNeighbours: false
-            });
-            scene.addTo(controller);
-        })();
-    }
+    var closeAlertBuuton = $('#alert-box .close-box');
+    closeAlertBuuton.on('click', function () {
+        $('#alert-box').addClass('closed')
+        $('.hero.stripe, .navbar-default').removeClass('alert-open');
+        if ($('body').hasClass('main')) {
+            (function() {
+                var scene = new ScrollMagic.Scene({
+                    offset: 26
+                });
+                scene.setPin('.navbar', {
+                    pushNeighbours: false
+                });
+                scene.addTo(controller);
+            })();
+        }
+    })
 
     if ($('body').hasClass('enterprise')) {
         var scene = document.getElementById('scene');
