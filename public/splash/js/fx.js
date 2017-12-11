@@ -61,11 +61,47 @@ $(function () {
         animateTeam();
     })();
 
+    function getCookie(cookieName) {
+        var name = cookieName + '=';
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return '';
+    }
+
+    var alertCookie = getCookie('alertCookie');
+    var alertDiv = $('#alert-box');
     var controller = new ScrollMagic.Controller();
+
+    if (alertCookie === 'closed') {
+        if ($('body').hasClass('main')) {
+            (function() {
+                var scene = new ScrollMagic.Scene({
+                    offset: 26
+                });
+                scene.setPin('.navbar', {
+                    pushNeighbours: false
+                });
+                scene.addTo(controller);
+            })();
+        }
+    } else {
+        $('.hero.stripe, .navbar-default').addClass('alert-open');
+        alertDiv.addClass('open');
+    }
 
     var closeAlertBuuton = $('#alert-box .close-box');
     closeAlertBuuton.on('click', function () {
-        $('#alert-box').addClass('closed')
+        document.cookie = 'alertCookie=closed;expires=' + new Date(Date.now() + 2628000) + ';path=/;';
+        $('#alert-box').removeClass('open')
         $('.hero.stripe, .navbar-default').removeClass('alert-open');
         if ($('body').hasClass('main')) {
             (function() {
